@@ -1,0 +1,28 @@
+{
+  "name": "connecting-people-chippr",
+  "version": "1.0.0",
+  "description": "A Task board for chippr",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JS",
+    "Express",
+    "Socket.io"
+  ],
+  "author": "Daan Korver, Boudewijn Bout",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-compression": "^1.0.1",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
