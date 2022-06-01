@@ -9,14 +9,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Rubik';
+  src: url('/assets/fonts/Rubik-SemiBold.ttf');
+  font-weight: 600;
+  font-display: swap;
+}
+
 :root {
   --cream: #F8F4F1;
   --dark: #262626;
   --accent: #FEBE2D;
-  --accent-opaque: 254, 190, 45
+  --accent-opaque: 254, 190, 45;
   --grey: #FCFCFC;
   --grey-text: #C7C7C7;
-  --accent-opaque: 254, 190, 45;
+  --red: crimson;
+  --green: yellowgreen;
 }
 
 * {
@@ -94,7 +102,7 @@ nav ul li a:hover {
 /* ====================================== */
 
 header {
-  padding: 3.125rem 0 0 3.125rem;
+  padding: 3.125rem 3.125rem 0 3.125rem;
   display: flex;
   align-items: center;
   width: 100%;
@@ -148,7 +156,7 @@ header h1 {
 
 .header-icon-wrapper .icon span {
   position: absolute;
-  background-color: red;
+  background-color: var(--red);
   font-size: .7rem;
   width: 1rem;
   height: 1rem;
@@ -176,4 +184,204 @@ header h1 {
   color: var(--accent);
   padding: 0.125rem 0.313rem 0.125rem 0.313rem;
   border-radius: 0.188rem;
+}
+
+/* ====================================== */
+/* Chat                                   */
+/* ====================================== */
+
+aside.chat {
+  background-color: #fff;
+  padding: 1em;
+  padding-top: 3em;
+  border-left: 1px solid var(--grey-text);
+  display: flex;
+  flex-direction: column;
+}
+
+aside.chat h2,h3,h4 {
+  font-family: 'Rubik';
+}
+
+aside.chat h2 {
+  margin-bottom: .5em;
+}
+
+aside.chat h2 span {
+  color: var(--accent);
+}
+
+.user-list {
+  display: flex;
+  gap: .5em;
+  list-style: none;
+  margin-bottom: 1.5em;
+}
+
+.user-list .user {
+  width: 2.3rem;
+  height: 2.3rem;
+  position: relative;
+}
+
+.user-list li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-list .user span {
+  width: .6em;
+  height: .6em;
+  display: block;
+  position: absolute;
+  bottom: 2.5%;
+  right: 0;
+  border-radius: 50%;
+}
+
+.user-list .user span.online {
+  background-color: var(--green);
+}
+
+.user-list .user span.offline {
+  background-color: var(--red);
+}
+
+.chatroom {
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto 3.5em;
+  place-items: center;
+}
+
+.chatroom form {
+  display: flex;
+  width: 100%;
+  gap: .5em;
+}
+
+.chatroom form button {
+  width: 3em;
+  height: 3em;
+  border-radius: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  background-color: var(--accent);
+}
+
+.chatroom form button svg {
+  width: 50%;
+  height: 50%;
+}
+
+.chatroom form input {
+  background-color: #f1f1f1;
+  color: gray;
+  padding: .8em 1em;
+  outline: none;
+  border: none;
+  border-radius: .5em;
+  flex-grow: 1;
+  font-family: 'Inter';
+}
+
+.chatroom > div {
+  height: 75vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.chats {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+  padding-top: 1.5em;
+  overflow: auto;
+}
+
+.chats::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chats::-webkit-scrollbar-track {
+  background-color: var(--dark);
+}
+
+.chats::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: .5em;
+}
+
+.chats li {
+  display: flex;
+  align-items: flex-start;
+  gap: .5em;
+}
+
+.chats li {
+  animation: message .2s ease-out forwards;
+}
+
+@keyframes message {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.chats li.incoming {
+  padding-left: 1em;
+}
+
+.chats li.incoming p {
+  background-color: var(--accent);
+}
+
+.chats li.outgoing {
+  align-self: flex-end;
+  padding-right: 1em;
+}
+
+.chats li.outgoing p {
+  background-color: var(--dark);
+  color: var(--cream);
+}
+
+.chats li.outgoing .user{
+  order: 1;
+}
+
+.chats li p {
+  padding: .65em .8em;
+  border-radius: .5em;
+  font-size: .8rem;
+  min-height: 2rem;
+  word-break: break-word;
+}
+
+.chats li .user {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.chats li .user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
