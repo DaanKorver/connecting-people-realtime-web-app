@@ -3,20 +3,20 @@ const chat = document.querySelector('.chatroom form')
 const chatInput = document.querySelector('.chatroom form input')
 const chats = document.querySelector('.chats')
 
-chat.addEventListener('submit', event => {
-	event.preventDefault()
-	const msg = chatInput.value
-	if (!msg) return
-	socket.emit('message', msg)
-	chatInput.value = ''
-})
+chat.addEventListener('submit', sendMessage)
 
 /* ------------------------ */
 /* Socket.io                */
 /* ------------------------ */
 
 // Chat messages
-socket.on('message', msg => {
+socket.on('message', appendMessage)
+
+/**
+ * Appends the message markup to the chat
+ * @param {string} msg
+ */
+function appendMessage(msg) {
 	const direction = msg.id === socket.id ? 'outgoing' : 'incoming'
 	chats.insertAdjacentHTML(
 		'beforeend',
@@ -30,4 +30,16 @@ socket.on('message', msg => {
   `
 	)
 	chats.scrollTo(0, chats.scrollHeight)
-})
+}
+
+/**
+ * Sends message to server and clears the chat input
+ * @param {object} event
+ */
+function sendMessage(event) {
+	event.preventDefault()
+	const msg = chatInput.value
+	if (!msg) return
+	socket.emit('message', msg)
+	chatInput.value = ''
+}
