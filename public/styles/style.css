@@ -8,6 +8,7 @@
   --accent: #FEBE2D;
   --grey: #FCFCFC;
   --grey-text: #C7C7C7;
+  --accent-opaque: 254, 190, 45;
 }
 
 * {
@@ -52,6 +53,32 @@ aside.sidebar {
   height: 1px;
   background-color: var(--cream);
 }
+
+nav {
+  width: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+nav ul li a {
+  color: var(--cream);
+  line-height: 1.5;
+  text-decoration: none;
+  display: block;
+  transition: 300ms;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+  padding: .6em;
+  border-radius: .4em;
+  background-color: rgba(var(--accent-opaque), .4)
+} 
 
 /* ====================================== */
 /* Header                                 */
