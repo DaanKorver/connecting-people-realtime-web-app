@@ -6,6 +6,8 @@
   --cream: #F8F4F1;
   --dark: #262626;
   --accent: #FEBE2D;
+  --grey: #FCFCFC;
+  --grey-text: #C7C7C7;
 }
 
 * {
@@ -15,7 +17,7 @@
 }
 
 body {
-  background-color: var(--cream);
+  background-color: var(--grey);
   display: grid;
   grid-template-columns: 16em auto 20em;
   height: 100vh;
@@ -49,4 +51,93 @@ aside.sidebar {
   width: 100%;
   height: 1px;
   background-color: var(--cream);
+}
+
+/* ====================================== */
+/* Header                                 */
+/* ====================================== */
+
+header {
+  padding: 3.125rem 0 0 3.125rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+header span {
+  font-size: 2rem;
+}
+
+header h1 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 1.9rem;
+  margin-left: 0.625rem;
+}
+
+.header-icon-wrapper {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.header-icon-wrapper .icon {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background-color: var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header-icon-wrapper .icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.header-icon-wrapper .icon.cover {
+  overflow: hidden;
+}
+
+.header-icon-wrapper .icon.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-icon-wrapper .icon span {
+  position: absolute;
+  background-color: red;
+  font-size: .7rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  color: var(--cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -10%;
+  top: -10%;
+}
+
+/* ====================================== */
+/* Add new task                           */
+/* ====================================== */
+
+.add-new-task {
+  margin: .75rem 0 0 3.125rem;
+  color: var(--grey-text);
+  font-size: .9rem;
+}
+
+.add-new-task span {
+  background-color: var(--cream);
+  color: var(--accent);
+  padding: 0.125rem 0.313rem 0.125rem 0.313rem;
+  border-radius: 0.188rem;
 }
