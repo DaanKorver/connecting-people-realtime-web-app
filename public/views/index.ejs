@@ -1,35 +1,40 @@
 <%- include('./partials/header.ejs') %>
-<aside class="sidebar">
-  <a href="/" class="logo">
-    <img src="/assets/logo.svg" alt="Chippr logo" />
-  </a>
-  <nav>
-    <ul>
-      <li><a href="/">Dashboard</a></li>
-      <li><a href="/">Daily tasks</a></li>
-      <li><a href="/">Chat</a></li>
-      <li><a href="/">About us</a></li>
-      <li><a href="/">Contact</a></li>
-    </ul>
-  </nav>
-</aside>
-<main>
-  <header>
-    <span>👋</span>
-    <h1>Daily Tasks</h1>
+  <aside class="sidebar">
+    <a href="/" class="logo">
+      <img src="/assets/logo.svg" alt="Chippr logo" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/">Daily tasks</a></li>
+        <li><a href="/">Chat</a></li>
+        <li><a href="/">About us</a></li>
+        <li><a href="/">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main>
+    <header>
+      <span>👋</span>
+      <h1>Daily Tasks</h1>
 
-    <div class="header-icon-wrapper">
-      <span></span>
-      <img src="assets/images/search-icon.png" alt="" />
-      <span></span>
-      <img src="assets/images/message-icon.png" alt="" />
-      <img src="assets/images/joost-chippr.jpg" alt="" />
-    </div>
-  </header>
+      <div class="header-icon-wrapper">
+        <div class="icon">
+          <img src="assets/images/search-icon.png" alt="" />
+        </div>
+        <div class="icon">
+          <img src="assets/images/message-icon.png" alt="" />
+          <span>2</span>
+        </div>
+        <div class="icon cover">
+          <img src="assets/images/joost-chippr.jpg" alt="" />
+        </div>
+      </div>
+    </header>
 
-  <article class="add-new-task">
-    Klik <span>+Nieuw</span> om een nieuwe taak toe te voegen.
-  </article>
-</main>
-<aside></aside>
-<%- include('./partials/footer.ejs') %>
+    <article class="add-new-task">
+      Klik <span>+Nieuw</span> om een nieuwe taak toe te voegen.
+    </article>
+  </main>
+  <aside></aside>
+  <%- include('./partials/footer.ejs') %>
