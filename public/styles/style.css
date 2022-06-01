@@ -2,10 +2,18 @@
 /* General                                */
 /* ====================================== */
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Regular.ttf');
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --cream: #F8F4F1;
   --dark: #262626;
   --accent: #FEBE2D;
+  --accent-opaque: 254, 190, 45
   --grey: #FCFCFC;
   --grey-text: #C7C7C7;
 }
@@ -19,7 +27,7 @@
 body {
   background-color: var(--grey);
   display: grid;
-  grid-template-columns: 16em auto 20em;
+  grid-template-columns: 15em auto 20em;
   height: 100vh;
   font-family: Inter, sans-serif;
 }
@@ -35,6 +43,7 @@ aside.sidebar {
   align-items: flex-start;
   flex-direction: column;
   padding: 1.2em;
+  padding-right: 3em;
   gap: 1em;
 }
 
@@ -53,6 +62,31 @@ aside.sidebar {
   background-color: var(--cream);
 }
 
+nav {
+  width: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+nav ul li a {
+  color: var(--cream);
+  line-height: 1.5;
+  text-decoration: none;
+  display: block;
+  transition: 300ms;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+  padding: .6em;
+  border-radius: .4em;
+  background-color: rgba(var(--accent-opaque), .4)
+}
 /* ====================================== */
 /* Header                                 */
 /* ====================================== */
