@@ -1,0 +1,52 @@
+/* ====================================== */
+/* General                                */
+/* ====================================== */
+
+:root {
+  --cream: #F8F4F1;
+  --dark: #262626;
+  --accent: #FEBE2D;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cream);
+  display: grid;
+  grid-template-columns: 16em auto 20em;
+  height: 100vh;
+  font-family: Inter, sans-serif;
+}
+
+/* ====================================== */
+/* Sidebar                                */
+/* ====================================== */
+
+aside.sidebar {
+  background-color: var(--dark);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 1.2em;
+  gap: 1em;
+}
+
+.logo {
+  position: relative;
+  width: 100%;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--cream);
+}
