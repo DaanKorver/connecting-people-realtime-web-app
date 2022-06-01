@@ -2,10 +2,18 @@
 /* General                                */
 /* ====================================== */
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Regular.ttf');
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --cream: #F8F4F1;
   --dark: #262626;
   --accent: #FEBE2D;
+  --accent-opaque: 254, 190, 45
   --grey: #FCFCFC;
   --grey-text: #C7C7C7;
   --accent-opaque: 254, 190, 45;
@@ -20,7 +28,7 @@
 body {
   background-color: var(--grey);
   display: grid;
-  grid-template-columns: 16em auto 20em;
+  grid-template-columns: 15em auto 20em;
   height: 100vh;
   font-family: Inter, sans-serif;
 }
@@ -36,6 +44,7 @@ aside.sidebar {
   align-items: flex-start;
   flex-direction: column;
   padding: 1.2em;
+  padding-right: 3em;
   gap: 1em;
 }
 
