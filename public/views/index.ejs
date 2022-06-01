@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs') %>
   <aside class="sidebar">
     <a href="/" class="logo">
-      <img src="/assets/logo.svg" alt="Chippr logo">
+      <img src="/assets/logo.svg" alt="Chippr logo" />
     </a>
     <nav>
       <ul>
@@ -13,6 +13,28 @@
       </ul>
     </nav>
   </aside>
-  <main></main>
+  <main>
+    <header>
+      <span>👋</span>
+      <h1>Daily Tasks</h1>
+
+      <div class="header-icon-wrapper">
+        <div class="icon">
+          <img src="assets/images/search-icon.png" alt="" />
+        </div>
+        <div class="icon">
+          <img src="assets/images/message-icon.png" alt="" />
+          <span>2</span>
+        </div>
+        <div class="icon cover">
+          <img src="assets/images/joost-chippr.jpg" alt="" />
+        </div>
+      </div>
+    </header>
+
+    <article class="add-new-task">
+      Klik <span>+Nieuw</span> om een nieuwe taak toe te voegen.
+    </article>
+  </main>
   <aside></aside>
   <%- include('./partials/footer.ejs') %>
