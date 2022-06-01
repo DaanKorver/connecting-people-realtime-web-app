@@ -86,6 +86,7 @@ nav ul li a:hover {
   padding: .6em;
   border-radius: .4em;
   background-color: rgba(var(--accent-opaque), .4)
+}
 /* ====================================== */
 /* Header                                 */
 /* ====================================== */
