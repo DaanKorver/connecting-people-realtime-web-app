@@ -58,7 +58,7 @@ aside.sidebar {
 /* ====================================== */
 
 header {
-  margin: 3.125rem 0 0 3.125rem;
+  padding: 3.125rem 0 0 3.125rem;
   display: flex;
   align-items: center;
   width: 100%;
@@ -78,6 +78,8 @@ header h1 {
 .header-icon-wrapper {
   margin-left: auto;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .header-icon-wrapper img {
@@ -85,17 +87,16 @@ header h1 {
   height: auto;
   position: relative;
   margin-right: 0.938rem;
+  z-index: 1;
 }
 
 .header-icon-wrapper span {
-  content: '';
   background-color: var(--dark);
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
   position: absolute;
 }
-
 
 /* ====================================== */
 /* Add new task                           */
