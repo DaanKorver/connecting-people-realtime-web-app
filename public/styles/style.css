@@ -27,7 +27,7 @@
 body {
   background-color: var(--grey);
   display: grid;
-  grid-template-columns: 16em auto 20em;
+  grid-template-columns: 15em auto 20em;
   height: 100vh;
   font-family: Inter, sans-serif;
 }
