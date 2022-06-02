@@ -14,17 +14,11 @@ chat.addEventListener('submit', sendMessage)
 
 let dragEl = null
 
-cards.forEach(card => {
-	card.addEventListener('dragstart', onDragStart)
-})
-
 rows.forEach(row => {
 	row.addEventListener('dragover', onDragOver)
 	row.addEventListener('dragleave', onDragLeave)
 	row.addEventListener('drop', onDrop)
 })
-
-updateRows()
 
 /* ------------------------ */
 /* Socket.io                */
@@ -32,6 +26,33 @@ updateRows()
 
 // Chat messages
 socket.on('message', appendMessage)
+socket.on('drop', dropInfo => {
+	rows[dropInfo.target].children[1].appendChild(
+		document.getElementById(dropInfo.id)
+	)
+	updateRows()
+})
+
+socket.on('set-cards', cards => {
+	clearRows()
+	Object.values(cards).forEach(card => {
+		rows[card.row].children[1].insertAdjacentHTML(
+			'beforeend',
+			`
+			<li draggable="true" id="card${card.id}">
+				<p>[Chippr.dev] Create Prototype mobile for Get notificatino in principe</p>
+				<div class="meta">
+					<span>11 Juni</span>
+				</div>
+			</li>
+		`
+		)
+		document
+			.getElementById(`card${card.id}`)
+			.addEventListener('dragstart', onDragStart)
+	})
+	updateRows()
+})
 
 /**
  * Appends the message markup to the chat
@@ -67,8 +88,9 @@ function sendMessage(event) {
 
 function onDrop(event) {
 	this.classList.remove('dr')
-	this.children[1].appendChild(dragEl)
-	updateRows()
+	const id = dragEl.id
+	const target = Array.from(rows).indexOf(this)
+	socket.emit('drop', { target, id })
 	event.preventDefault()
 }
 
@@ -97,5 +119,11 @@ function updateRows() {
 				row.classList.remove('empty')
 			}
 		}
+	})
+}
+
+function clearRows() {
+	rows.forEach(row => {
+		row.children[1].innerHTML = ''
 	})
 }
