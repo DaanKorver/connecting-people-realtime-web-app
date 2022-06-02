@@ -24,7 +24,8 @@ function showAddTaskPopup() {
 }
 
 function hideAddTaskPopup() {
-	addTaskPopup.classList.toggle('visible');
+	addTaskPopup.classList.remove('visible');
+	addTaskCard.classList.remove('visible');
 }
 
 /* ------------------------ */
