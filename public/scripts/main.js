@@ -23,6 +23,9 @@ function showAddTaskPopup() {
 	addTaskCard.classList.toggle('visible');
 }
 
+/**
+ * Hides the add task form
+ */
 function hideAddTaskPopup() {
 	addTaskPopup.classList.remove('visible');
 	addTaskCard.classList.remove('visible');

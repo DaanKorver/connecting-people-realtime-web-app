@@ -437,15 +437,20 @@ aside.chat h2 span {
 .create-task-card-header {
   background-color: var(--dark);
   color: #fff;
-  padding: 0.625rem 0 0.625rem 1.25rem;
+  padding: 0.625rem 1.25rem;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .create-task-card-header p {
-  margin-left: auto;
   cursor: pointer;
+  background-color: var(--accent);
+  padding: .25rem .5rem;
+  border-radius: .313rem;
+  font-size: .8rem;
 }
 
 .create-task-card-header h3 {
