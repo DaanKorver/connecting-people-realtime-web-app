@@ -1,9 +1,31 @@
-const socket = io()
-const chat = document.querySelector('.chatroom form')
-const chatInput = document.querySelector('.chatroom form input')
-const chats = document.querySelector('.chats')
+const socket = io();
+const chat = document.querySelector('.chatroom form');
+const chatInput = document.querySelector('.chatroom form input');
+const chats = document.querySelector('.chats');
+const addTaskBtn = document.querySelector('.add-new-task span');
+const addTaskCloseBtn = document.querySelector('.create-task-card-header p');
+const addTaskPopup = document.querySelector('.create-task');
+const addTaskCard = document.querySelector('.create-task-card');
 
-chat.addEventListener('submit', sendMessage)
+chat.addEventListener('submit', sendMessage);
+addTaskBtn.addEventListener('click', showAddTaskPopup);
+addTaskCloseBtn.addEventListener('click', hideAddTaskPopup);
+
+/* ------------------------ */
+/* Regular functions        */
+/* ------------------------ */
+
+/**
+ * Shows the add task form
+ */
+function showAddTaskPopup() {
+	addTaskPopup.classList.toggle('visible');
+	addTaskCard.classList.toggle('visible');
+}
+
+function hideAddTaskPopup() {
+	addTaskPopup.classList.toggle('visible');
+}
 
 /* ------------------------ */
 /* Socket.io                */
