@@ -3,15 +3,15 @@
 /* ====================================== */
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/assets/fonts/Inter-Regular.ttf');
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Rubik';
-  src: url('/assets/fonts/Rubik-SemiBold.ttf');
+  font-family: "Rubik";
+  src: url("/assets/fonts/Rubik-SemiBold.ttf");
   font-weight: 600;
   font-display: swap;
 }
@@ -27,6 +27,7 @@
   --grey-text: #C7C7C7;
   --red: crimson;
   --green: yellowgreen;
+  --darken: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -64,7 +65,7 @@ aside.sidebar {
 }
 
 .logo::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -168,7 +169,7 @@ main > header h1 {
 .header-icon-wrapper .icon span {
   position: absolute;
   background-color: var(--red);
-  font-size: .7rem;
+  font-size: 0.7rem;
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
@@ -185,9 +186,9 @@ main > header h1 {
 /* ====================================== */
 
 .add-new-task {
-  margin: .75rem 0 0 3.125rem;
+  margin: 0.75rem 0 0 3.125rem;
   color: var(--grey-text);
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .add-new-task span {
@@ -195,6 +196,7 @@ main > header h1 {
   color: var(--accent);
   padding: 0.125rem 0.313rem 0.125rem 0.313rem;
   border-radius: 0.188rem;
+  cursor: pointer;
 }
 
 /* ====================================== */
@@ -210,12 +212,14 @@ aside.chat {
   flex-direction: column;
 }
 
-aside.chat h2,h3,h4 {
-  font-family: 'Rubik';
+aside.chat h2,
+h3,
+h4 {
+  font-family: "Rubik";
 }
 
 aside.chat h2 {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 aside.chat h2 span {
@@ -224,7 +228,7 @@ aside.chat h2 span {
 
 .user-list {
   display: flex;
-  gap: .5em;
+  gap: 0.5em;
   list-style: none;
   margin-bottom: 1.5em;
 }
@@ -243,8 +247,8 @@ aside.chat h2 span {
 }
 
 .user-list .user span {
-  width: .6em;
-  height: .6em;
+  width: 0.6em;
+  height: 0.6em;
   display: block;
   position: absolute;
   bottom: 2.5%;
@@ -270,13 +274,13 @@ aside.chat h2 span {
 .chatroom form {
   display: flex;
   width: 100%;
-  gap: .5em;
+  gap: 0.5em;
 }
 
 .chatroom form button {
   width: 3em;
   height: 3em;
-  border-radius: .5em;
+  border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,12 +297,12 @@ aside.chat h2 span {
 .chatroom form input {
   background-color: #f1f1f1;
   color: gray;
-  padding: .8em 1em;
+  padding: 0.8em 1em;
   outline: none;
   border: none;
-  border-radius: .5em;
+  border-radius: 0.5em;
   flex-grow: 1;
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 
 .chatroom > div {
@@ -328,17 +332,17 @@ aside.chat h2 span {
 
 .chats::-webkit-scrollbar-thumb {
   background-color: var(--accent);
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
 
 .chats li {
   display: flex;
   align-items: flex-start;
-  gap: .5em;
+  gap: 0.5em;
 }
 
 .chats li {
-  animation: message .2s ease-out forwards;
+  animation: message 0.2s ease-out forwards;
 }
 
 @keyframes message {
@@ -371,14 +375,14 @@ aside.chat h2 span {
   color: var(--cream);
 }
 
-.chats li.outgoing .user{
+.chats li.outgoing .user {
   order: 1;
 }
 
 .chats li p {
-  padding: .65em .8em;
-  border-radius: .5em;
-  font-size: .8rem;
+  padding: 0.65em 0.8em;
+  border-radius: 0.5em;
+  font-size: 0.8rem;
   min-height: 2rem;
   word-break: break-word;
 }
@@ -397,7 +401,7 @@ aside.chat h2 span {
   object-fit: cover;
 }
 
-/* ====================================== */
+/* ========================================= */
 /* Board                                  */
 /* ====================================== */
 
@@ -419,6 +423,57 @@ aside.chat h2 span {
   padding: 1em;
   border-top-right-radius: .5em;
   border-top-left-radius: .5em;
+}
+/* ====================================== */
+/* Create Task Popup                      */
+/* ====================================== */
+
+.create-task {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 150ms;
+}
+
+.create-task::before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--darken);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.create-task.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.create-task-card.visible {
+  transform: translateY(-10px);
+}
+
+.create-task-card {
+  background-color: #fff;
+  width: 28rem;
+  margin: 10vh auto;
+  border-radius: 0.625rem;
+  transition: all 200ms;
+}
+
+.create-task-card-header {
+  background-color: var(--dark);
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -476,4 +531,69 @@ aside.chat h2 span {
   font-size: .8rem;
   padding: .5em 1em;
   border-radius: .5em;
+}
+
+.create-task-card-header p {
+  cursor: pointer;
+  background-color: var(--accent);
+  padding: .25rem .5rem;
+  border-radius: .313rem;
+  font-size: .8rem;
+}
+
+.create-task-card-header h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.create-task-card form {
+  padding: 1rem 1rem;
+}
+
+.create-task-card form button {
+  background-color: var(--accent);
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.313rem;
+  font-size: .9rem;
+  transition: all 200ms;
+  cursor: pointer;
+}
+
+.create-task-card form button:hover {
+  background-color: #e8b617;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.create-task-card form button:active {
+  transform: translateY(-1px) scale(0.95);
+}
+
+.create-task-card .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.create-task-card .form-group label {
+  font-family: "Rubik", sans-serif;
+  margin-bottom: .5rem;
+}
+
+.create-task-card .form-group input,
+textarea {
+  background-color: #f6f8fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.625rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.create-task-card .form-group input {
+  padding: .5rem 1rem;
+}
+
+.create-task-card .form-group textarea {
+  padding: 1rem 1rem;
 }
