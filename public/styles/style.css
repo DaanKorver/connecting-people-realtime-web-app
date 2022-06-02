@@ -17,12 +17,14 @@
 }
 
 :root {
-  --cream: #f8f4f1;
+  --cream: #F8F4F1;
+  --cream-highlight: hsl(26, 33%, 90%);
   --dark: #262626;
-  --accent: #febe2d;
-  --accent-opaque: 254, 190, 45;
-  --grey: #fcfcfc;
-  --grey-text: #c7c7c7;
+  --dark-opaque: rgba(38, 38, 38, .2);
+  --accent: #FEBE2D;
+  --accent-opaque: rgba(254, 190, 45, .4);
+  --grey: #FCFCFC;
+  --grey-text: #C7C7C7;
   --red: crimson;
   --green: yellowgreen;
   --darken: rgba(0, 0, 0, 0.5);
@@ -93,28 +95,37 @@ nav ul li a {
 
 nav ul li a.active,
 nav ul li a:hover {
-  padding: 0.6em;
-  border-radius: 0.4em;
-  background-color: rgba(var(--accent-opaque), 0.4);
+  padding: .6em;
+  border-radius: .4em;
+  background-color: var(--accent-opaque)
+} 
+
+/* ====================================== */
+/* Main                                   */
+/* ====================================== */
+
+main {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ====================================== */
 /* Header                                 */
 /* ====================================== */
 
-header {
+main > header {
   padding: 3.125rem 3.125rem 0 3.125rem;
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-header span {
+main > header span {
   font-size: 2rem;
 }
 
-header h1 {
-  font-family: "Rubik", sans-serif;
+main > header h1 {
+  font-family: 'Rubik', sans-serif;
   font-weight: 400;
   font-size: 1.9rem;
   margin-left: 0.625rem;
@@ -390,6 +401,29 @@ aside.chat h2 span {
   object-fit: cover;
 }
 
+/* ========================================= */
+/* Board                                  */
+/* ====================================== */
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  padding: 1em;
+  flex: 1;
+}
+
+.board .row.dr ul {
+  background-color: var(--cream-highlight);
+}
+
+.board .row header {
+  background-color: var(--dark);
+  color: var(--cream);
+  padding: 1em;
+  border-top-right-radius: .5em;
+  border-top-left-radius: .5em;
+}
 /* ====================================== */
 /* Create Task Popup                      */
 /* ====================================== */
@@ -443,6 +477,60 @@ aside.chat h2 span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.board .row header span {
+  background-color: var(--accent);
+  color: var(--dark);
+  width: 1em;
+  height: 1em;
+  padding: .8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .25em;
+  font-weight: 600;
+}
+
+.board .row ul {
+  background-color: var(--cream);
+  padding: 1em;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  box-shadow: 0px 2px 5px 0px var(--dark-opaque);
+}
+
+.board .row.empty ul::after {
+  content: 'No items...';
+  padding: 1em;
+  background-color: var(--grey);
+  border-radius: .5em;
+}
+
+.board .row ul li {
+  background-color: #ffffff;
+  padding: .8em;
+  font-family: 'Rubik';
+  font-weight: 500;
+  border-radius: .5em;
+  box-shadow: 0px 2px 5px 0px var(--dark-opaque);
+}
+
+.board .row ul li .meta {
+  display: flex;
+  margin-top: 1em;
+}
+
+.board .row ul li .meta span {
+  background-color: orange;
+  color: var(--cream);
+  font-size: .8rem;
+  padding: .5em 1em;
+  border-radius: .5em;
 }
 
 .create-task-card-header p {
