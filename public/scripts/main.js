@@ -3,7 +3,26 @@ const chat = document.querySelector('.chatroom form')
 const chatInput = document.querySelector('.chatroom form input')
 const chats = document.querySelector('.chats')
 
+const rows = document.querySelectorAll('.row')
+const cards = document.querySelectorAll('.row ul li')
+
 chat.addEventListener('submit', sendMessage)
+
+/* ------------------------ */
+/* Dragging                 */
+/* ------------------------ */
+
+let dragEl = null
+
+cards.forEach(card => {
+	card.addEventListener('dragstart', onDragStart)
+})
+
+rows.forEach(row => {
+	row.addEventListener('dragover', onDragOver)
+	row.addEventListener('dragleave', onDragLeave)
+	row.addEventListener('drop', onDrop)
+})
 
 /* ------------------------ */
 /* Socket.io                */
@@ -42,4 +61,24 @@ function sendMessage(event) {
 	if (!msg) return
 	socket.emit('message', msg)
 	chatInput.value = ''
+}
+
+function onDrop(event) {
+	this.classList.remove('dr')
+	this.children[1].appendChild(dragEl)
+	event.preventDefault()
+}
+
+function onDragOver(event) {
+	this.classList.add('dr')
+	event.preventDefault()
+}
+
+function onDragLeave(event) {
+	this.classList.remove('dr')
+	event.preventDefault()
+}
+
+function onDragStart(event) {
+	dragEl = event.target
 }
