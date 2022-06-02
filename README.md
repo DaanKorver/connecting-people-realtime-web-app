@@ -1,6 +1,7 @@
 # Chippr Projectboard
 
-<!-- Geef je project een titel en schrijf in één zin wat het is -->
+![84292599-d972-493e-8a38-953b3ca9bf80](https://user-images.githubusercontent.com/30351629/171692849-8d9849d5-7bf4-417e-99b9-7f946664c346.jpeg)
+
 
 ## Inhoudsopgave
 
