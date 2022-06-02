@@ -24,6 +24,8 @@ rows.forEach(row => {
 	row.addEventListener('drop', onDrop)
 })
 
+updateRows()
+
 /* ------------------------ */
 /* Socket.io                */
 /* ------------------------ */
@@ -66,6 +68,7 @@ function sendMessage(event) {
 function onDrop(event) {
 	this.classList.remove('dr')
 	this.children[1].appendChild(dragEl)
+	updateRows()
 	event.preventDefault()
 }
 
@@ -81,4 +84,18 @@ function onDragLeave(event) {
 
 function onDragStart(event) {
 	dragEl = event.target
+}
+
+function updateRows() {
+	rows.forEach(row => {
+		const count = row.children[1].children.length
+		row.querySelector('header span').innerText = count
+		if (!count) {
+			row.classList.add('empty')
+		} else {
+			if (row.classList.contains('empty')) {
+				row.classList.remove('empty')
+			}
+		}
+	})
 }
