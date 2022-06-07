@@ -32,9 +32,9 @@ io.on('connection', socket => {
 	})
 
 	socket.on('drop', dropInfo => {
-		const cards = cards.get()
-		cards[dropInfo.id].row = dropInfo.target
-		fs.writeFileSync(path, JSON.stringify(cards))
+		const newCards = cards.get()
+		newCards[dropInfo.id].row = dropInfo.target
+		fs.writeFileSync(path, JSON.stringify(newCards))
 		io.emit('drop', dropInfo)
 	})
 })
