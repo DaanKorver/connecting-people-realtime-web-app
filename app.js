@@ -6,9 +6,11 @@ const { Server } = require('socket.io')
 const io = new Server(server)
 const PORT = process.env.PORT || 8888
 const fs = require('fs')
+const { v4: uuidv4 } = require('uuid')
 
 app.use(compression())
 app.use(express.static('public'))
+app.use(express.json())
 app.set('view engine', 'ejs')
 app.set('views', 'public/views')
 
@@ -18,8 +20,13 @@ app.get('/', (req, res) => {
 
 // Sockets
 
-let rawCards = fs.readFileSync('./cards.json')
-let cards = JSON.parse(rawCards)
+const path = './cards.json'
+
+if (!fs.existsSync(path)) {
+	fs.writeFileSync(path, JSON.stringify({}))
+}
+
+let cards = JSON.parse(fs.readFileSync(path))
 
 io.on('connection', socket => {
 	console.log('a user connected')
@@ -32,10 +39,32 @@ io.on('connection', socket => {
 
 	socket.on('drop', dropInfo => {
 		cards[dropInfo.id].row = dropInfo.target
-		fs.writeFileSync('./cards.json', JSON.stringify(cards))
+		fs.writeFileSync(path, JSON.stringify(cards))
 		io.emit('drop', dropInfo)
 	})
 })
+
+// Api Routes
+
+const api = express.Router()
+
+api.post('/task', async (req, res) => {
+	const cards = JSON.parse(fs.readFileSync(path))
+	const cardId = uuidv4()
+	cards[`card${cardId}`] = { cardId, ...req.body, row: 0 }
+	fs.writeFileSync(path, JSON.stringify(cards))
+	updateCards()
+	res.json({ status: 'Sucess' })
+})
+
+app.use('/api', api)
+
+// functions
+
+function updateCards() {
+	cards = JSON.parse(fs.readFileSync(path))
+	io.emit('set-cards', cards)
+}
 
 server.listen(PORT, () => {
 	console.log(`listening on http://localhost:${PORT}`)

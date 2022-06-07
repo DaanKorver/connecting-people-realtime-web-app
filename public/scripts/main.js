@@ -1,18 +1,22 @@
-const socket = io();
-const chat = document.querySelector('.chatroom form');
-const chatInput = document.querySelector('.chatroom form input');
-const chats = document.querySelector('.chats');
-const addTaskBtn = document.querySelector('.add-new-task span');
-const addTaskCloseBtn = document.querySelector('.create-task-card-header p');
-const addTaskPopup = document.querySelector('.create-task');
-const addTaskCard = document.querySelector('.create-task-card');
+const socket = io()
+const chat = document.querySelector('.chatroom form')
+const chatInput = document.querySelector('.chatroom form input')
+const chats = document.querySelector('.chats')
+const addTaskBtn = document.querySelector('.add-new-task span')
+const addTaskCloseBtn = document.querySelector('.create-task-card-header p')
+const addTaskPopup = document.querySelector('.create-task')
+const addTaskCard = document.querySelector('.create-task-card')
+const taskPopup = document.querySelector('#task')
+const taskTitle = document.querySelector('#task input')
+const taskBody = document.querySelector('#task textarea')
 
 const rows = document.querySelectorAll('.row')
 const cards = document.querySelectorAll('.row ul li')
 
-chat.addEventListener('submit', sendMessage);
-addTaskBtn.addEventListener('click', showAddTaskPopup);
-addTaskCloseBtn.addEventListener('click', hideAddTaskPopup);
+chat.addEventListener('submit', sendMessage)
+addTaskBtn.addEventListener('click', showAddTaskPopup)
+addTaskCloseBtn.addEventListener('click', hideAddTaskPopup)
+taskPopup.addEventListener('submit', createTask)
 
 /* ------------------------ */
 /* Regular functions        */
@@ -22,18 +26,33 @@ addTaskCloseBtn.addEventListener('click', hideAddTaskPopup);
  * Shows the add task form
  */
 function showAddTaskPopup() {
-	addTaskPopup.classList.toggle('visible');
-	addTaskCard.classList.toggle('visible');
+	addTaskPopup.classList.toggle('visible')
+	addTaskCard.classList.toggle('visible')
 }
 
 /**
  * Hides the add task form
  */
 function hideAddTaskPopup() {
-	addTaskPopup.classList.remove('visible');
-	addTaskCard.classList.remove('visible');
+	addTaskPopup.classList.remove('visible')
+	addTaskCard.classList.remove('visible')
 }
 
+async function createTask(e) {
+	e.preventDefault()
+	const data = { title: taskTitle.value, body: taskBody.value }
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	}
+	const res = await fetch('/api/task', options)
+	if (res.ok) {
+		hideAddTaskPopup()
+	}
+}
 
 /* ------------------------ */
 /* Dragging                 */
@@ -61,13 +80,15 @@ socket.on('drop', dropInfo => {
 })
 
 socket.on('set-cards', cards => {
+	console.log(cards)
 	clearRows()
 	Object.values(cards).forEach(card => {
+		console.log(card)
 		rows[card.row].children[1].insertAdjacentHTML(
 			'beforeend',
 			`
-			<li draggable="true" id="card${card.id}">
-				<p>[Chippr.dev] Create Prototype mobile for Get notificatino in principe</p>
+			<li draggable="true" id="card${card.cardId}">
+				<p>[${card.title}] ${card.body}</p>
 				<div class="meta">
 					<span>11 Juni</span>
 				</div>
@@ -75,7 +96,7 @@ socket.on('set-cards', cards => {
 		`
 		)
 		document
-			.getElementById(`card${card.id}`)
+			.getElementById(`card${card.cardId}`)
 			.addEventListener('dragstart', onDragStart)
 	})
 	updateRows()
