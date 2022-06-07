@@ -34,7 +34,6 @@ function hideAddTaskPopup() {
 	addTaskCard.classList.remove('visible');
 }
 
-
 /* ------------------------ */
 /* Dragging                 */
 /* ------------------------ */
