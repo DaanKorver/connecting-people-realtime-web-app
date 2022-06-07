@@ -80,10 +80,8 @@ socket.on('drop', dropInfo => {
 })
 
 socket.on('set-cards', cards => {
-	console.log(cards)
 	clearRows()
 	Object.values(cards).forEach(card => {
-		console.log(card)
 		rows[card.row].children[1].insertAdjacentHTML(
 			'beforeend',
 			`
