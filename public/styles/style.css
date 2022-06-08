@@ -541,6 +541,13 @@ aside.chat h2 span {
   box-shadow: 0px 2px 5px 0px var(--dark-opaque);
   font-weight: 400;
   font-size: .95em;
+  position: relative;
+}
+
+.board .row ul li .delete {
+  position: absolute;
+  right: .8em;
+  top: .65em;
 }
 
 .board .row ul li p {
@@ -641,7 +648,7 @@ textarea {
 
 @media (min-width: 80rem) {
   body {
-    grid-template-columns: 15em auto 20em;
+    grid-template-columns: 14em auto 15em;
   }
   
   aside.chat {

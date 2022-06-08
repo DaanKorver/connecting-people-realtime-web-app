@@ -87,6 +87,7 @@ socket.on('set-cards', cards => {
 			`
 			<li draggable="true" id="card${card.cardId}">
 				<p>[${card.title}] ${card.body}</p>
+				<span class="delete">&#128465;</span>
 				<div class="meta">
 					<span>11 Juni</span>
 				</div>
