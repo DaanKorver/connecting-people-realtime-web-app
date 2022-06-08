@@ -94,9 +94,11 @@ socket.on('set-cards', cards => {
 			</li>
 		`
 		)
-		document
-			.getElementById(`card${card.cardId}`)
-			.addEventListener('dragstart', onDragStart)
+		const cardEl = document.getElementById(`card${card.cardId}`)
+		cardEl.addEventListener('dragstart', onDragStart)
+		cardEl
+			.querySelector('.delete')
+			.addEventListener('click', () => deleteCard(card.cardId))
 	})
 	updateRows()
 })
@@ -173,4 +175,8 @@ function clearRows() {
 	rows.forEach(row => {
 		row.children[1].innerHTML = ''
 	})
+}
+
+function deleteCard(id) {
+	socket.emit('delete-card', id)
 }

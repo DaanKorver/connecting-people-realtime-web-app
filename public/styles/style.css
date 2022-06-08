@@ -548,6 +548,7 @@ aside.chat h2 span {
   position: absolute;
   right: .8em;
   top: .65em;
+  cursor: pointer;
 }
 
 .board .row ul li p {
