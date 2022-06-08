@@ -37,6 +37,14 @@ io.on('connection', socket => {
 		fs.writeFileSync(path, JSON.stringify(newCards))
 		io.emit('drop', dropInfo)
 	})
+
+	socket.on('delete-card', id => {
+		const newCards = cards.get()
+		console.log(newCards)
+		delete newCards[`card${id}`]
+		fs.writeFileSync(path, JSON.stringify(newCards))
+		io.emit('set-cards', cards.get())
+	})
 })
 
 server.listen(PORT, () => {
